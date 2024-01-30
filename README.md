@@ -1,6 +1,6 @@
 # kubectl-guardrails
 
-Sometimes I am firing away `kubectl` commands with wreckless abandon and sometimes I am using the wrong context and sometimes that wrong context is the production cluster. Hello bad day...
+Sometimes I am firing away `kubectl` commands with reckless abandon and sometimes I am using the wrong context and sometimes that wrong context is the production cluster. Hello bad day...
 
 Enter `kubectl guardrails`. The idea behind this is to let developers put guardrails on the contexts and subcommands that they care about and let everything else passthrough unabated. Prompting a yes/no when running `get pods` is burdensome meanwhile blocking `delete <resource>` can be really valuable in preventing accidents.
 
