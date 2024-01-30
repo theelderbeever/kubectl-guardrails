@@ -14,11 +14,11 @@ use text_io::try_read;
 fn main() {
     let config = get_config();
 
-    let current_context = get_current_context(&config.bin);
+    let current_context = get_current_context("kubectl");
 
     let args = env::args().collect::<Vec<String>>()[1..].to_vec();
 
-    let mut cmd = Command::new(&config.bin);
+    let mut cmd = Command::new("kubectl");
     cmd.args(&args);
 
     if let Some(prompt) = config
@@ -35,7 +35,7 @@ fn main() {
             "Dry Run".yellow().bold()
         );
         if prompt.dry_run {
-            let mut dry_run = Command::new(&config.bin);
+            let mut dry_run = Command::new("kubectl");
             dry_run.args(&args);
             dry_run.arg("--dry-run=client");
             let output = dry_run.output().expect("Failed to perform dry-run");
@@ -47,7 +47,7 @@ fn main() {
         let r: String = try_read!().expect("Invalid input");
 
         match r.to_lowercase().as_str() {
-            "y" => println!("\n❯ {} {}\n", config.bin.green(), &args.join(" ")),
+            "y" => println!("\n❯ {} {}\n", "kubectl".green(), &args.join(" ")),
             "n" => exit(0),
             _ => {
                 println!("{}", "Invalid response!".red());
@@ -111,7 +111,6 @@ impl Context {
 
 #[derive(Deserialize, Debug)]
 struct Config {
-    pub bin: String,
     #[serde(default)]
     pub contexts: Vec<Context>,
 }

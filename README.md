@@ -26,18 +26,13 @@ pod "hello" deleted
 
 ## Install
 
-I will be adding pre-build binaries however, right now you need `cargo`.
-
-1. `cargo install --git https://github.com/theelderbeever/kubectl-guardrails.git`
-2. Run `which kubectl`
-3. Create your `~/.kube/guardrails` file as shown in the Configuration section.
-   1. Populate the `bin` key with the result of `which kubectl`
-4. (Optional) In your `.bashrc`/`.zshrc` add `alias "kubectl=kubectl guardrails"`
+1. Download the latest [release](https://github.com/theelderbeever/kubectl-guardrails/releases) to a place on your path OR `cargo install --git https://github.com/theelderbeever/kubectl-guardrails.git`
+2. Create your `~/.kube/guardrails` file as shown in the Configuration section.
+3. (Optional) In your `.bashrc`/`.zshrc` add `alias "kubectl=kubectl guardrails"`
 
 ## Configuration
 
 ```yaml
-bin: /opt/homebrew/bin/kubectl # This was mine on MacOS
 contexts:
   - name: Prod-Cluster # This should match a context in your `KUBECONFIG` file
     prompts:
