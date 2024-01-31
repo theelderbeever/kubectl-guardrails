@@ -18,7 +18,7 @@ pod "hello" deleted (dry run)
 
 Would you like to proceed? (y/N): y
 
-❯ /opt/homebrew/bin/kubectl delete pods hello
+❯ kubectl delete pods hello
 
 pod "hello" deleted
 ```
