@@ -1,0 +1,9 @@
+🛡️: Welcome to kubectl-guardrails Codespace! 🚀
+
+🔧: Your Development Environment: This Codespace is equipped with a pre-configured dev container, ensuring consistency and readiness for development. All necessary dependencies are at your fingertips.
+
+🐳: Kubernetes Cluster with kind: Dive into testing with a local Kubernetes cluster powered by kind. Experience the convenience of containerized testing environments for your Kubernetes applications.
+
+💡: Getting Started:
+Make sure to check out the ~/.kube/guardrails file for configuration settings.
+Use kubectl port-forward for exposing Kubernetes apps during your tests.

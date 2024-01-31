@@ -1,0 +1,67 @@
+{
+  "name": "rust-local-k8s",
+  "dockerFile": "Dockerfile",
+	
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      "version": "latest",
+      "moby": true
+    }
+  },
+
+  // do not change these if you want Docker in Docker support
+  "runArgs": ["--init", "--privileged", "--network=host"],
+  "mounts": [ "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind" ],
+  "overrideCommand": false,
+
+  // some base images require a specific user name
+  "remoteUser": "vscode",
+
+  "hostRequirements": {
+    "cpus": 2
+  },
+
+  "forwardPorts": [
+    80,
+    443,
+    8080
+  ],
+
+  // add labels
+  "portsAttributes": {
+    "80": { "label": "Ingress HTTP" },
+    "443": { "label": "Ingress HTTPS" },
+    "8080": { "label": "Nginx Example HTTP" }
+  },
+
+  // Use 'onCreateCommand' to run commands as part of container creation.
+  "onCreateCommand": ".devcontainer/on-create.sh",
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": ".devcontainer/post-create.sh",
+
+  // Use 'postStartCommand' to run commands after the container starts.
+  "postStartCommand": ".devcontainer/post-start.sh",
+	
+  // Install extensions
+  "customizations": {
+    "vscode": {	
+       // Set container specific settings
+       "settings": {
+         "terminal.integrated.defaultProfile.linux": "zsh",
+	       "resmon.show.battery": false,
+	       "resmon.show.cpufreq": false,
+         "redhat.telemetry.enabled": false
+	      },			
+	      "extensions": [
+      	  "davidanson.vscode-markdownlint",
+      	  "ms-kubernetes-tools.vscode-kubernetes-tools",
+      	  "mutantdino.resourcemonitor",
+      	  "redhat.vscode-yaml",
+      	  "rust-lang.rust-analyzer",
+      	  "serayuzgur.crates",
+      	  "tamasfe.even-better-toml"
+      	]
+    }
+  }
+}
