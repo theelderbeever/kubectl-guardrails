@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 8080
+    command: ["/bin/sh", "-c"]
+    args:
+    - >
+      sed -i 's/listen  .*80;/listen 8080;/g' /etc/nginx/conf.d/default.conf &&
+      nginx -g 'daemon off;'
+    resources:
+      requests:  # Minimum resources required
+        cpu: "250m"  # 250 millicpu (quarter of a CPU core)
+        memory: "64Mi"  # 64 Megabytes of RAM
+      limits:  # Maximum resources allowed
+        cpu: "500m"  # 500 millicpu (half of a CPU core)
+        memory: "128Mi"  # 128 Megabytes of RAM

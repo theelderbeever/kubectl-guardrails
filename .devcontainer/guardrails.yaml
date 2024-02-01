@@ -1,0 +1,6 @@
+contexts:
+  - name: kind-demo-cluster # This should match a context in your `KUBECONFIG` file
+    prompts:
+      - name: apply
+      - name: delete
+        dry-run: true
